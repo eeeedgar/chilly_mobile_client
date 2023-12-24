@@ -1,0 +1,18 @@
+import 'package:chilly_mobile_client/features/register/presentation/register_page.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'create_user_dto.g.dart';
+
+@JsonSerializable()
+class CreateUserDto {
+  final String name;
+  final String login;
+  final String profilePicUrl;
+  final String password;
+  final List<Role> role;
+
+  CreateUserDto(
+      this.name, this.login, this.profilePicUrl, this.password, this.role);
+
+  Map<String, dynamic> toJson() => _$CreateUserDtoToJson(this);
+}

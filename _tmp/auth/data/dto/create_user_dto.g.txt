@@ -1,0 +1,32 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'create_user_dto.txt';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+CreateUserDto _$CreateUserDtoFromJson(Map<String, dynamic> json) =>
+    CreateUserDto(
+      json['name'] as String,
+      json['login'] as String,
+      json['profilePicUrl'] as String,
+      json['password'] as String,
+      (json['role'] as List<dynamic>)
+          .map((e) => $enumDecode(_$RoleEnumMap, e))
+          .toList(),
+    );
+
+Map<String, dynamic> _$CreateUserDtoToJson(CreateUserDto instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'login': instance.login,
+      'profilePicUrl': instance.profilePicUrl,
+      'password': instance.password,
+      'role': instance.role.map((e) => _$RoleEnumMap[e]!).toList(),
+    };
+
+const _$RoleEnumMap = {
+  Role.User: 'User',
+  Role.Admin: 'Admin',
+};
