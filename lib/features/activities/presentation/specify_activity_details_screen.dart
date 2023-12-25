@@ -33,7 +33,11 @@ class _SpecifyActivityDetailsScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Event details')),
+      appBar: AppBar(
+          title: Text(
+        'Event details',
+        style: AppTextStyle.h1,
+      )),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

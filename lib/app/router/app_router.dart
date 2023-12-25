@@ -29,5 +29,20 @@ class AppRouter extends $AppRouter {
           path: '/specify_activity_details',
           guards: [NeedAuthGuard()],
         ),
+        AutoRoute(
+          page: SettingsRoute.page,
+          path: '/settings',
+          guards: [NeedAuthGuard()],
+        ),
+        AutoRoute(
+          page: SearchSettingsRoute.page,
+          path: '/search_settings',
+          guards: [NeedAuthGuard()],
+        ),
+        AutoRoute(
+          page: ProfileRoute.page,
+          path: '/profile',
+          guards: [NeedAuthGuard()],
+        ),
       ];
 }

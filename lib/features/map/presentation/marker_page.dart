@@ -1,12 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:chilly_mobile_client/app/common/styles/app_text_style.dart';
-import 'package:chilly_mobile_client/app/di/config.dart';
 import 'package:chilly_mobile_client/app/router/app_router.gr.dart';
 import 'package:chilly_mobile_client/features/activities/domain/activity_cubit.dart';
 import 'package:chilly_mobile_client/features/activities/presentation/create_activity_modal.dart';
 import 'package:chilly_mobile_client/features/activities/presentation/view_activity_modal.dart';
 import 'package:chilly_mobile_client/features/filter/domain/filter_cubit.dart';
-import 'package:chilly_mobile_client/features/user/domain/user_change_notifier.dart';
 import 'package:chilly_mobile_client/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -59,13 +57,17 @@ class _MarkerScreenState extends State<MarkerScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           FloatingActionButton(
+            heroTag: 'settings',
             child: const Icon(Icons.settings),
-            onPressed: () {},
+            onPressed: () {
+              appRouter.push(const SettingsRoute());
+            },
           ),
           const SizedBox(
             height: 12,
           ),
           FloatingActionButton(
+            heroTag: 'reload',
             child: const Icon(Icons.cached),
             onPressed: () {
               context.read<ActivityCubit>().fetchActivities();
@@ -75,6 +77,21 @@ class _MarkerScreenState extends State<MarkerScreen> {
             height: 12,
           ),
           FloatingActionButton(
+            heroTag: 'search',
+            child: const Icon(Icons.search),
+            onPressed: () {
+              _searchActive = !_searchActive;
+              if (_searchActive) {
+                _focusNode.requestFocus();
+              }
+              setState(() {});
+            },
+          ),
+          const SizedBox(
+            height: 12,
+          ),
+          FloatingActionButton(
+            heroTag: 'compass',
             child: const Icon(Icons.compass_calibration),
             onPressed: () {
               _mapController.move(const LatLng(59.937500, 30.308611), 10);
@@ -84,17 +101,13 @@ class _MarkerScreenState extends State<MarkerScreen> {
         ],
       ),
       appBar: AppBar(
-        centerTitle: false,
-        leading: IconButton(
-          onPressed: _logout,
-          icon: const Icon(Icons.logout),
-        ),
         title: _searchActive
             ? TextField(
                 controller: _searchController,
                 focusNode: _focusNode,
                 decoration: const InputDecoration.collapsed(
-                  hintText: 'Search by title or tag',
+                  // todo: make sure
+                  hintText: 'Search by title, tag or description',
                 ),
                 onChanged: (value) {
                   context.read<FilterCubit>().setSearchText(value);
@@ -104,18 +117,6 @@ class _MarkerScreenState extends State<MarkerScreen> {
                 'Activity Map',
                 style: AppTextStyle.h1,
               ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              _searchActive = !_searchActive;
-              if (_searchActive) {
-                _focusNode.requestFocus();
-              }
-              setState(() {});
-            },
-            icon: const Icon(Icons.search),
-          ),
-        ],
       ),
       body: Column(
         children: [
@@ -213,10 +214,5 @@ class _MarkerScreenState extends State<MarkerScreen> {
         ],
       ),
     );
-  }
-
-  void _logout() {
-    getIt<UserChangeNotifier>().clear();
-    appRouter.replace(const LoginRoute());
   }
 }

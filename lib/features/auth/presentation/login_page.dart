@@ -24,6 +24,31 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocProvider(
       create: (context) => AuthCubit(),
       child: Scaffold(
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  appRouter.push(const RegisterRoute());
+                },
+                child: const Text('CREATE ACCOUNT'),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  await context.read<AuthCubit>().login(
+                        UserLoginDto(
+                          login: _loginController.text,
+                          password: _passwordController.text,
+                        ),
+                      );
+                  appRouter.replace(const MarkerRoute());
+                },
+                child: const Text('LOGIN'),
+              ),
+            ],
+          ),
           appBar: AppBar(
             title: Text(
               'Chilly',
@@ -47,25 +72,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       labelText: 'password',
                     ),
                     obscureText: true,
-                  ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      await context.read<AuthCubit>().login(
-                            UserLoginDto(
-                              login: _loginController.text,
-                              password: _passwordController.text,
-                            ),
-                          );
-
-                      appRouter.replace(const MarkerRoute());
-                    },
-                    child: const Text('login'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      appRouter.replace(const RegisterRoute());
-                    },
-                    child: const Text('register'),
                   ),
                 ],
               ),
