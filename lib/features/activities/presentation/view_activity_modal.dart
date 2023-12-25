@@ -1,4 +1,5 @@
 import 'package:chilly_mobile_client/app/common/styles/app_text_style.dart';
+import 'package:chilly_mobile_client/features/activities/domain/activity_cubit.dart';
 import 'package:chilly_mobile_client/features/activities/domain/activity_meta.dart';
 import 'package:chilly_mobile_client/features/activities/presentation/compoments/tag_chip.dart';
 import 'package:chilly_mobile_client/features/user/domain/user_cubit.dart';
@@ -65,7 +66,12 @@ class _ViewActivityModalState extends State<ViewActivityModal> {
               if (widget.meta.isActive && !widget.meta.isFavorite)
                 ElevatedButton(
                   onPressed: () {
-                    // todo: scope
+                    context
+                        .read<ActivityCubit>()
+                        .addToFavorites(widget.meta.event.id)
+                        .whenComplete(
+                          () => context.read<ActivityCubit>().fetchActivities,
+                        );
                   },
                   child: Text(
                     'I will go'.toUpperCase(),

@@ -1,6 +1,8 @@
 import 'package:chilly_mobile_client/app/di/config.dart';
 import 'package:chilly_mobile_client/app/network/dio.dart';
+import 'package:chilly_mobile_client/features/activities/data/add_to_favorites_dto.dart';
 import 'package:chilly_mobile_client/features/activities/data/create_activity_dto.dart';
+import 'package:chilly_mobile_client/features/activities/data/update_activity_dto.dart';
 import 'package:chilly_mobile_client/features/activities/domain/activity_entity.dart';
 import 'package:chilly_mobile_client/features/activities/domain/activity_meta.dart';
 import 'package:chilly_mobile_client/features/activities/domain/repository.dart';
@@ -47,9 +49,8 @@ class ActivityNetworkRepository extends ActivityRepository {
   }
 
   @override
-  Future<void> updateActivity(String activityId) {
-    // TODO: implement updateActivity
-    throw UnimplementedError();
+  Future<void> updateActivity(String activityId, UpdateActivityDto dto) async {
+    await dio.patch('/events/$activityId', data: dto.toJson());
   }
 
   @override
@@ -64,5 +65,8 @@ class ActivityNetworkRepository extends ActivityRepository {
   }
 
   @override
-  Future<void> addToFavorites(String id) async {}
+  Future<void> addToFavorites(AddToFavoritesDto dto) async {
+    final user = getIt<UserChangeNotifier>().user!;
+    await dio.post('/users/${user.id}/favorites', data: dto.toJson());
+  }
 }
