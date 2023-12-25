@@ -69,4 +69,15 @@ class ActivityNetworkRepository extends ActivityRepository {
     final user = getIt<UserChangeNotifier>().user!;
     await dio.post('/users/${user.id}/favorites', data: dto.toJson());
   }
+
+  @override
+  Future<void> removeFromFavorites(String activityId) async {
+    final user = getIt<UserChangeNotifier>().user!;
+    await dio.delete(
+      '/users/${user.id}/favorites',
+      queryParameters: {
+        'favoriteId': activityId,
+      },
+    );
+  }
 }

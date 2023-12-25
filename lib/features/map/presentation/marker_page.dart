@@ -5,6 +5,7 @@ import 'package:chilly_mobile_client/app/router/app_router.gr.dart';
 import 'package:chilly_mobile_client/features/activities/domain/activity_cubit.dart';
 import 'package:chilly_mobile_client/features/activities/presentation/create_activity_modal.dart';
 import 'package:chilly_mobile_client/features/activities/presentation/view_activity_modal.dart';
+import 'package:chilly_mobile_client/features/filter/domain/filter_cubit.dart';
 import 'package:chilly_mobile_client/features/search/domain/search_change_notifier.dart';
 import 'package:chilly_mobile_client/main.dart';
 import 'package:flutter/material.dart';
@@ -164,10 +165,12 @@ class _MarkerScreenState extends State<MarkerScreen> {
                   openStreetMapTileLayer,
                   BlocBuilder<ActivityCubit, ActivityState>(
                     builder: (context, state) {
+                      var filteredActivities =
+                          context.watch<FilterCubit>().filter(state.activities);
                       customMarkers.clear();
                       return MarkerLayer(
                         markers: customMarkers
-                          ..addAll(state.activities
+                          ..addAll(filteredActivities
                               .map(
                                 (e) => Marker(
                                   point: LatLng(

@@ -24,4 +24,6 @@ abstract class ActivityRepository {
   Future<List<ActivityMeta>> getFavoriteActivities();
 
   Future<void> addToFavorites(AddToFavoritesDto dto);
+
+  Future<void> removeFromFavorites(String activityId);
 }

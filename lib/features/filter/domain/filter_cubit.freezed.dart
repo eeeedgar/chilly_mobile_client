@@ -16,8 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$FilterState {
-  String? get searchText => throw _privateConstructorUsedError;
   bool get favoritesOnly => throw _privateConstructorUsedError;
+  bool get myOwnOnly => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FilterStateCopyWith<FilterState> get copyWith =>
@@ -30,7 +30,7 @@ abstract class $FilterStateCopyWith<$Res> {
           FilterState value, $Res Function(FilterState) then) =
       _$FilterStateCopyWithImpl<$Res, FilterState>;
   @useResult
-  $Res call({String? searchText, bool favoritesOnly});
+  $Res call({bool favoritesOnly, bool myOwnOnly});
 }
 
 /// @nodoc
@@ -46,17 +46,17 @@ class _$FilterStateCopyWithImpl<$Res, $Val extends FilterState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchText = freezed,
     Object? favoritesOnly = null,
+    Object? myOwnOnly = null,
   }) {
     return _then(_value.copyWith(
-      searchText: freezed == searchText
-          ? _value.searchText
-          : searchText // ignore: cast_nullable_to_non_nullable
-              as String?,
       favoritesOnly: null == favoritesOnly
           ? _value.favoritesOnly
           : favoritesOnly // ignore: cast_nullable_to_non_nullable
+              as bool,
+      myOwnOnly: null == myOwnOnly
+          ? _value.myOwnOnly
+          : myOwnOnly // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -70,7 +70,7 @@ abstract class _$$FilterStateImplCopyWith<$Res>
       __$$FilterStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? searchText, bool favoritesOnly});
+  $Res call({bool favoritesOnly, bool myOwnOnly});
 }
 
 /// @nodoc
@@ -84,17 +84,17 @@ class __$$FilterStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? searchText = freezed,
     Object? favoritesOnly = null,
+    Object? myOwnOnly = null,
   }) {
     return _then(_$FilterStateImpl(
-      searchText: freezed == searchText
-          ? _value.searchText
-          : searchText // ignore: cast_nullable_to_non_nullable
-              as String?,
       favoritesOnly: null == favoritesOnly
           ? _value.favoritesOnly
           : favoritesOnly // ignore: cast_nullable_to_non_nullable
+              as bool,
+      myOwnOnly: null == myOwnOnly
+          ? _value.myOwnOnly
+          : myOwnOnly // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -103,17 +103,18 @@ class __$$FilterStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FilterStateImpl implements _FilterState {
-  const _$FilterStateImpl({this.searchText, this.favoritesOnly = false});
+  const _$FilterStateImpl({this.favoritesOnly = false, this.myOwnOnly = false});
 
-  @override
-  final String? searchText;
   @override
   @JsonKey()
   final bool favoritesOnly;
+  @override
+  @JsonKey()
+  final bool myOwnOnly;
 
   @override
   String toString() {
-    return 'FilterState(searchText: $searchText, favoritesOnly: $favoritesOnly)';
+    return 'FilterState(favoritesOnly: $favoritesOnly, myOwnOnly: $myOwnOnly)';
   }
 
   @override
@@ -121,14 +122,14 @@ class _$FilterStateImpl implements _FilterState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FilterStateImpl &&
-            (identical(other.searchText, searchText) ||
-                other.searchText == searchText) &&
             (identical(other.favoritesOnly, favoritesOnly) ||
-                other.favoritesOnly == favoritesOnly));
+                other.favoritesOnly == favoritesOnly) &&
+            (identical(other.myOwnOnly, myOwnOnly) ||
+                other.myOwnOnly == myOwnOnly));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, searchText, favoritesOnly);
+  int get hashCode => Object.hash(runtimeType, favoritesOnly, myOwnOnly);
 
   @JsonKey(ignore: true)
   @override
@@ -138,13 +139,13 @@ class _$FilterStateImpl implements _FilterState {
 }
 
 abstract class _FilterState implements FilterState {
-  const factory _FilterState(
-      {final String? searchText, final bool favoritesOnly}) = _$FilterStateImpl;
+  const factory _FilterState({final bool favoritesOnly, final bool myOwnOnly}) =
+      _$FilterStateImpl;
 
   @override
-  String? get searchText;
-  @override
   bool get favoritesOnly;
+  @override
+  bool get myOwnOnly;
   @override
   @JsonKey(ignore: true)
   _$$FilterStateImplCopyWith<_$FilterStateImpl> get copyWith =>

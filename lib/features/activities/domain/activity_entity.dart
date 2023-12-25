@@ -24,22 +24,3 @@ class ActivityEntity with _$ActivityEntity {
   factory ActivityEntity.fromJson(Map<String, dynamic> json) =>
       _$ActivityEntityFromJson(json);
 }
-
-// "title": "string",
-// "description": "string",
-// "latitude": 0,
-// "longitude": 0,
-// "startTime": "2023-12-23T13:56:49.215Z",
-// "finishTime": "2023-12-23T13:56:49.215Z",
-// "pictures": [
-// "string"
-// ],
-// "id": "5152c65c-52ad-4bd5-a9c6-def6f3f0fbbb",
-// "registeredAt": "2023-12-23T12:14:03.549Z",
-// "updatedAt": "2023-12-23T12:14:03.549Z",
-// "user": null,
-// "tags": [
-// {
-// "title": "string"
-// }
-// ]

@@ -4,6 +4,7 @@ import 'package:chilly_mobile_client/app/di/config.dart';
 import 'package:chilly_mobile_client/app/router/app_router.dart';
 import 'package:chilly_mobile_client/features/activities/domain/activity_cubit.dart';
 import 'package:chilly_mobile_client/features/auth/domain/auth_cubit.dart';
+import 'package:chilly_mobile_client/features/filter/domain/filter_cubit.dart';
 import 'package:chilly_mobile_client/features/user/domain/user_cubit.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +50,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => ActivityCubit(),
+        ),
+        BlocProvider(
+          create: (context) => FilterCubit(),
         ),
       ],
       child: MaterialApp.router(

@@ -30,9 +30,21 @@ class ActivityCubit extends Cubit<ActivityState> {
 
   Future<void> addToFavorites(String id) async {
     await getIt<ActivityRepository>().addToFavorites(
-      AddToFavoritesDto.fromActivityId(
-        id,
-      ),
+      AddToFavoritesDto.fromActivityId(id),
     );
+    await fetchActivities();
   }
+
+  Future<void> removeFromFavorites(String id) async {
+    await getIt<ActivityRepository>().removeFromFavorites(id);
+    await fetchActivities();
+  }
+
+  // Future<void> editActivity(String id) async {
+  //   await getIt<ActivityRepository>().addToFavorites(
+  //     AddToFavoritesDto.fromActivityId(
+  //       id,
+  //     ),
+  //   );
+  // }
 }

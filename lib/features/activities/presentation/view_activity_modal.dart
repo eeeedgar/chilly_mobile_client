@@ -68,10 +68,7 @@ class _ViewActivityModalState extends State<ViewActivityModal> {
                   onPressed: () {
                     context
                         .read<ActivityCubit>()
-                        .addToFavorites(widget.meta.event.id)
-                        .whenComplete(
-                          () => context.read<ActivityCubit>().fetchActivities,
-                        );
+                        .addToFavorites(widget.meta.event.id);
                   },
                   child: Text(
                     'I will go'.toUpperCase(),
@@ -81,7 +78,9 @@ class _ViewActivityModalState extends State<ViewActivityModal> {
               if (widget.meta.isFavorite)
                 ElevatedButton(
                   onPressed: () {
-                    // todo: scope
+                    context
+                        .read<ActivityCubit>()
+                        .removeFromFavorites(widget.meta.event.id);
                   },
                   child: Text(
                     'Remove from favorites'.toUpperCase(),
@@ -91,7 +90,7 @@ class _ViewActivityModalState extends State<ViewActivityModal> {
               if (widget.meta.isOwn)
                 ElevatedButton(
                   onPressed: () {
-                    // todo: scope
+                    // todo
                   },
                   child: Text(
                     'Edit'.toUpperCase(),
