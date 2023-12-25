@@ -127,7 +127,9 @@ class _SpecifyActivityDetailsScreenState
             ElevatedButton(
               onPressed: () {
                 final event = widget.createActivityEntity.copyWith(
-                    description: _descriptionController.text, tags: _tags);
+                    description: _descriptionController.text,
+                    tags: _tags,
+                    pictures: []);
                 context.read<ActivityCubit>().createActivity(event);
                 appRouter.replaceAll([const MarkerRoute()]);
               },

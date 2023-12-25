@@ -19,6 +19,7 @@ class ActivityCubit extends Cubit<ActivityState> {
       getIt<UserChangeNotifier>().user!.id,
     );
     await getIt<ActivityRepository>().createActivity(dto);
+    fetchActivities();
   }
 
   Future<void> fetchActivities() async {

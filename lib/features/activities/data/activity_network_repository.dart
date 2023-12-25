@@ -9,6 +9,7 @@ import 'package:chilly_mobile_client/features/activities/domain/repository.dart'
 class ActivityNetworkRepository extends ActivityRepository {
   @override
   Future<void> createActivity(CreateActivityDto dto) async {
+    print(dto.toJson());
     await dio.post(
       '/events',
       data: dto.toJson(),

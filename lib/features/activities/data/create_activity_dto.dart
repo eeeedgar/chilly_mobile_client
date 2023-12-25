@@ -1,5 +1,4 @@
 import 'package:chilly_mobile_client/features/activities/domain/create_activity_entity.dart';
-import 'package:chilly_mobile_client/features/activities/domain/tag_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'create_activity_dto.g.dart';
@@ -8,12 +7,12 @@ part 'create_activity_dto.g.dart';
 class CreateActivityDto {
   final String title;
   final String description;
-  final double latitude;
-  final double longitude;
+  final int latitude;
+  final int longitude;
   final DateTime startTime;
   final DateTime finishTime;
   final List<String> pictures;
-  final List<TagEntity> tags;
+  final List<String> tags;
   final String userId;
 
   CreateActivityDto(this.title, this.description, this.latitude, this.longitude,
@@ -26,11 +25,11 @@ class CreateActivityDto {
       CreateActivityDto(
           entity.title!,
           entity.description!,
-          entity.latitude!,
-          entity.longitude!,
+          entity.latitude!.round(),
+          entity.longitude!.round(),
           entity.startTime!,
           entity.finishTime!,
           entity.pictures!,
-          entity.tags!,
+          entity.tags!.map((e) => e.title).toList(),
           userId);
 }
