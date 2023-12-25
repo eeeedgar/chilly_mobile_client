@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 UserEntity _$UserEntityFromJson(Map<String, dynamic> json) {
-  return _UserState.fromJson(json);
+  return _UserEntity.fromJson(json);
 }
 
 /// @nodoc
@@ -105,11 +105,11 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
 }
 
 /// @nodoc
-abstract class _$$UserStateImplCopyWith<$Res>
+abstract class _$$UserEntityImplCopyWith<$Res>
     implements $UserEntityCopyWith<$Res> {
-  factory _$$UserStateImplCopyWith(
-          _$UserStateImpl value, $Res Function(_$UserStateImpl) then) =
-      __$$UserStateImplCopyWithImpl<$Res>;
+  factory _$$UserEntityImplCopyWith(
+          _$UserEntityImpl value, $Res Function(_$UserEntityImpl) then) =
+      __$$UserEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -123,11 +123,11 @@ abstract class _$$UserStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$UserStateImplCopyWithImpl<$Res>
-    extends _$UserEntityCopyWithImpl<$Res, _$UserStateImpl>
-    implements _$$UserStateImplCopyWith<$Res> {
-  __$$UserStateImplCopyWithImpl(
-      _$UserStateImpl _value, $Res Function(_$UserStateImpl) _then)
+class __$$UserEntityImplCopyWithImpl<$Res>
+    extends _$UserEntityCopyWithImpl<$Res, _$UserEntityImpl>
+    implements _$$UserEntityImplCopyWith<$Res> {
+  __$$UserEntityImplCopyWithImpl(
+      _$UserEntityImpl _value, $Res Function(_$UserEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -141,7 +141,7 @@ class __$$UserStateImplCopyWithImpl<$Res>
     Object? registeredAt = null,
     Object? updatedAt = null,
   }) {
-    return _then(_$UserStateImpl(
+    return _then(_$UserEntityImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -176,8 +176,8 @@ class __$$UserStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$UserStateImpl implements _UserState {
-  const _$UserStateImpl(
+class _$UserEntityImpl implements _UserEntity {
+  const _$UserEntityImpl(
       {required this.id,
       required this.name,
       required this.login,
@@ -186,8 +186,8 @@ class _$UserStateImpl implements _UserState {
       required this.registeredAt,
       required this.updatedAt});
 
-  factory _$UserStateImpl.fromJson(Map<String, dynamic> json) =>
-      _$$UserStateImplFromJson(json);
+  factory _$UserEntityImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserEntityImplFromJson(json);
 
   @override
   final String id;
@@ -213,7 +213,7 @@ class _$UserStateImpl implements _UserState {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UserStateImpl &&
+            other is _$UserEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.login, login) || other.login == login) &&
@@ -235,29 +235,29 @@ class _$UserStateImpl implements _UserState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UserStateImplCopyWith<_$UserStateImpl> get copyWith =>
-      __$$UserStateImplCopyWithImpl<_$UserStateImpl>(this, _$identity);
+  _$$UserEntityImplCopyWith<_$UserEntityImpl> get copyWith =>
+      __$$UserEntityImplCopyWithImpl<_$UserEntityImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$UserStateImplToJson(
+    return _$$UserEntityImplToJson(
       this,
     );
   }
 }
 
-abstract class _UserState implements UserEntity {
-  const factory _UserState(
+abstract class _UserEntity implements UserEntity {
+  const factory _UserEntity(
       {required final String id,
       required final String name,
       required final String login,
       required final String password,
       required final String profilePicUrl,
       required final DateTime registeredAt,
-      required final DateTime updatedAt}) = _$UserStateImpl;
+      required final DateTime updatedAt}) = _$UserEntityImpl;
 
-  factory _UserState.fromJson(Map<String, dynamic> json) =
-      _$UserStateImpl.fromJson;
+  factory _UserEntity.fromJson(Map<String, dynamic> json) =
+      _$UserEntityImpl.fromJson;
 
   @override
   String get id;
@@ -275,6 +275,6 @@ abstract class _UserState implements UserEntity {
   DateTime get updatedAt;
   @override
   @JsonKey(ignore: true)
-  _$$UserStateImplCopyWith<_$UserStateImpl> get copyWith =>
+  _$$UserEntityImplCopyWith<_$UserEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

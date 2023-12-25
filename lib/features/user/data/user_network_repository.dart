@@ -6,14 +6,8 @@ import 'package:injectable/injectable.dart';
 @Injectable(as: UserRepository)
 class UserNetworkRepository extends UserRepository {
   @override
-  Future<bool> deleteUser(int id) {
-    // TODO: implement deleteUser
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<UserEntity> getUser(String id) async {
-    return await dio.get('/users/$id').then(
+  Future<UserEntity> getUser(String userId) async {
+    return await dio.get('/users/$userId').then(
           (value) => UserEntity.fromJson(value.data),
         );
   }
@@ -21,6 +15,12 @@ class UserNetworkRepository extends UserRepository {
   @override
   Future<UserEntity> updateUser(UserEntity editedUser) {
     // TODO: implement updateUser
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> deleteUser(int userId) {
+    // TODO: implement deleteUser
     throw UnimplementedError();
   }
 }

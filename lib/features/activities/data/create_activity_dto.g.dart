@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'create_event_dto.dart';
+part of 'create_activity_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-CreateEventDto _$CreateEventDtoFromJson(Map<String, dynamic> json) =>
-    CreateEventDto(
+CreateActivityDto _$CreateActivityDtoFromJson(Map<String, dynamic> json) =>
+    CreateActivityDto(
       json['title'] as String,
       json['description'] as String,
       (json['latitude'] as num).toDouble(),
@@ -15,11 +15,13 @@ CreateEventDto _$CreateEventDtoFromJson(Map<String, dynamic> json) =>
       DateTime.parse(json['startTime'] as String),
       DateTime.parse(json['finishTime'] as String),
       (json['pictures'] as List<dynamic>).map((e) => e as String).toList(),
-      (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
+      (json['tags'] as List<dynamic>)
+          .map((e) => TagEntity.fromJson(e as Map<String, dynamic>))
+          .toList(),
       json['userId'] as String,
     );
 
-Map<String, dynamic> _$CreateEventDtoToJson(CreateEventDto instance) =>
+Map<String, dynamic> _$CreateActivityDtoToJson(CreateActivityDto instance) =>
     <String, dynamic>{
       'title': instance.title,
       'description': instance.description,

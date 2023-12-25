@@ -9,8 +9,9 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i6;
-import 'package:chilly_mobile_client/app/models/event.dart' as _i8;
-import 'package:chilly_mobile_client/features/activity/presentation/specify_activity_details_screen.dart'
+import 'package:chilly_mobile_client/features/activities/domain/create_activity_entity.dart'
+    as _i8;
+import 'package:chilly_mobile_client/features/activities/presentation/specify_activity_details_screen.dart'
     as _i5;
 import 'package:chilly_mobile_client/features/auth/presentation/login_page.dart'
     as _i1;
@@ -36,7 +37,7 @@ abstract class $AppRouter extends _i6.RootStackRouter {
     MarkerRoute.name: (routeData) {
       return _i6.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i2.MarkerScreen(),
+        child: _i6.WrappedRoute(child: const _i2.MarkerScreen()),
       );
     },
     ProfileRoute.name: (routeData) {
@@ -57,7 +58,7 @@ abstract class $AppRouter extends _i6.RootStackRouter {
         routeData: routeData,
         child: _i5.SpecifyActivityDetailsScreen(
           key: args.key,
-          event: args.event,
+          createActivityEntity: args.createActivityEntity,
         ),
       );
     },
@@ -126,13 +127,13 @@ class SpecifyActivityDetailsRoute
     extends _i6.PageRouteInfo<SpecifyActivityDetailsRouteArgs> {
   SpecifyActivityDetailsRoute({
     _i7.Key? key,
-    required _i8.AppEvent event,
+    required _i8.CreateActivityEntity createActivityEntity,
     List<_i6.PageRouteInfo>? children,
   }) : super(
           SpecifyActivityDetailsRoute.name,
           args: SpecifyActivityDetailsRouteArgs(
             key: key,
-            event: event,
+            createActivityEntity: createActivityEntity,
           ),
           initialChildren: children,
         );
@@ -146,15 +147,15 @@ class SpecifyActivityDetailsRoute
 class SpecifyActivityDetailsRouteArgs {
   const SpecifyActivityDetailsRouteArgs({
     this.key,
-    required this.event,
+    required this.createActivityEntity,
   });
 
   final _i7.Key? key;
 
-  final _i8.AppEvent event;
+  final _i8.CreateActivityEntity createActivityEntity;
 
   @override
   String toString() {
-    return 'SpecifyActivityDetailsRouteArgs{key: $key, event: $event}';
+    return 'SpecifyActivityDetailsRouteArgs{key: $key, createActivityEntity: $createActivityEntity}';
   }
 }

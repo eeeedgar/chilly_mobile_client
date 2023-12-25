@@ -19,11 +19,10 @@ class AuthCubit extends Cubit<AuthState> {
     dio.options.headers['Authorization'] =
         'Bearer ${loginResponse.accessToken}';
 
-    print(loginResponse.user.id);
+    print(loginResponse.accessToken);
 
     final user = await getIt<UserRepository>().getUser(loginResponse.user.id);
     getIt<UserChangeNotifier>().setUser(user);
-    print(user.name);
   }
 
   void register() {}

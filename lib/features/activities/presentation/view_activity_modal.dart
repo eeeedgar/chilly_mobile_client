@@ -1,6 +1,5 @@
 import 'package:chilly_mobile_client/app/common/styles/app_text_style.dart';
-import 'package:chilly_mobile_client/app/common/widgets/tag_chip.dart';
-import 'package:chilly_mobile_client/app/models/event.dart';
+import 'package:chilly_mobile_client/features/activities/domain/activity_entity.dart';
 import 'package:chilly_mobile_client/features/user/domain/user_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,10 +7,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ViewActivityModal extends StatefulWidget {
   const ViewActivityModal({
     super.key,
-    required this.event,
+    required this.activity,
   });
 
-  final AppEvent event;
+  final ActivityEntity activity;
 
   @override
   State<ViewActivityModal> createState() => _ViewActivityModalState();
@@ -27,38 +26,39 @@ class _ViewActivityModalState extends State<ViewActivityModal> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              _Row(name: 'Title', value: widget.event.name!),
+              _Row(name: 'Title', value: widget.activity.title),
               const SizedBox(
                 height: 20,
               ),
-              _Row(name: 'Address', value: widget.event.address!),
+              // _Row(name: 'Address', value: widget.activity.address!),
+              // const SizedBox(
+              //   height: 20,
+              // ),
+              _Row(name: 'from', value: widget.activity.startTime.formatE()),
               const SizedBox(
                 height: 20,
               ),
-              _Row(name: 'from', value: widget.event.start!.formatE()),
+              _Row(name: 'to', value: widget.activity.finishTime.formatE()),
               const SizedBox(
                 height: 20,
               ),
-              _Row(name: 'to', value: widget.event.end!.formatE()),
+              _Row(name: 'Description', value: widget.activity.description),
               const SizedBox(
                 height: 20,
               ),
-              _Row(name: 'Description', value: widget.event.description!),
-              const SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                height: 40,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: widget.event.tags!.length,
-                    itemBuilder: (context, index) {
-                      return TagChip(name: widget.event.tags!.elementAt(index));
-                    }),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
+              // SizedBox(
+              //   height: 40,
+              //   child: ListView.builder(
+              //       scrollDirection: Axis.horizontal,
+              //       itemCount: widget.activity.tags!.length,
+              //       itemBuilder: (context, index) {
+              //         return TagChip(
+              //             name: widget.activity.tags!.elementAt(index));
+              //       }),
+              // ),
+              // const SizedBox(
+              //   height: 20,
+              // ),
               SizedBox(
                 height: 100,
                 child: ListView(
@@ -73,26 +73,26 @@ class _ViewActivityModalState extends State<ViewActivityModal> {
               const SizedBox(
                 height: 40,
               ),
-              context.read<UserCubit>().isInFavorites(widget.event.id!)
-                  ? ElevatedButton(
-                      onPressed: () {
-                        context
-                            .read<UserCubit>()
-                            .removeFromFavorites(widget.event.id!);
-                      },
-                      child: const Text('Remove from favorites'),
-                    )
-                  : ElevatedButton(
-                      onPressed: () {
-                        context
-                            .read<UserCubit>()
-                            .addToFavorites(widget.event.id!);
-                      },
-                      child: Text(
-                        'I will go'.toUpperCase(),
-                        style: AppTextStyle.button,
-                      ),
-                    ),
+              // context.read<UserCubit>().isInFavorites(widget.activity.id!)
+              //     ? ElevatedButton(
+              //         onPressed: () {
+              //           context
+              //               .read<UserCubit>()
+              //               .removeFromFavorites(widget.activity.id!);
+              //         },
+              //         child: const Text('Remove from favorites'),
+              //       )
+              //     : ElevatedButton(
+              //         onPressed: () {
+              //           context
+              //               .read<UserCubit>()
+              //               .addToFavorites(widget.activity.id!);
+              //         },
+              //         child: Text(
+              //           'I will go'.toUpperCase(),
+              //           style: AppTextStyle.button,
+              //         ),
+              //       ),
             ],
           ),
         );

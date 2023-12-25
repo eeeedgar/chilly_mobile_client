@@ -13,7 +13,7 @@ class UserEntity with _$UserEntity {
     required String profilePicUrl,
     required DateTime registeredAt,
     required DateTime updatedAt,
-  }) = _UserState;
+  }) = _UserEntity;
 
   factory UserEntity.fromJson(Map<String, dynamic> json) =>
       _$UserEntityFromJson(json);

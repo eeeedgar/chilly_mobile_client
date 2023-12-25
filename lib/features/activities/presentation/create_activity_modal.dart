@@ -1,8 +1,6 @@
-import 'dart:math' as math;
-
 import 'package:chilly_mobile_client/app/common/styles/app_text_style.dart';
-import 'package:chilly_mobile_client/app/models/event.dart';
 import 'package:chilly_mobile_client/app/router/app_router.gr.dart';
+import 'package:chilly_mobile_client/features/activities/domain/create_activity_entity.dart';
 import 'package:chilly_mobile_client/features/map/presentation/components/info_input.dart';
 import 'package:chilly_mobile_client/main.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +16,6 @@ class CreateActivityModal extends StatefulWidget {
 }
 
 class _CreateActivityModalState extends State<CreateActivityModal> {
-  AppEvent event = const AppEvent();
-  final _addressController = TextEditingController();
   final _titleController = TextEditingController();
   DateTime? startDate, endDate;
   TimeOfDay? startTime, endTime;
@@ -38,13 +34,6 @@ class _CreateActivityModalState extends State<CreateActivityModal> {
             Text(
               'New activity',
               style: AppTextStyle.h1,
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            AppTextInput(
-              controller: _addressController,
-              title: 'Address',
             ),
             const SizedBox(
               height: 40,
@@ -163,17 +152,19 @@ class _CreateActivityModalState extends State<CreateActivityModal> {
                     hours: startTime!.hour, minutes: startTime!.minute));
                 final end = endDate!.add(
                     Duration(hours: endTime!.hour, minutes: endTime!.minute));
-                final e = event.copyWith(
-                  id: math.Random().nextInt(10000000),
-                  lat: widget.point.latitude,
-                  long: widget.point.longitude,
-                  name: _titleController.text,
-                  address: _addressController.text,
-                  start: start,
-                  end: end,
+                final createActivity = CreateActivityEntity(
+                  title: _titleController.text,
+                  latitude: widget.point.latitude,
+                  longitude: widget.point.longitude,
+                  startTime: start,
+                  finishTime: end,
                 );
                 appRouter.pop();
-                appRouter.push(SpecifyActivityDetailsRoute(event: e));
+                appRouter.push(
+                  SpecifyActivityDetailsRoute(
+                    createActivityEntity: createActivity,
+                  ),
+                );
               },
               child: Text(
                 'Continue filling details'.toUpperCase(),

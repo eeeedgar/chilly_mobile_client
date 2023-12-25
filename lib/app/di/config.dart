@@ -1,4 +1,6 @@
 import 'package:chilly_mobile_client/app/di/user_change_notifier.dart';
+import 'package:chilly_mobile_client/features/activities/data/activity_network_repository.dart';
+import 'package:chilly_mobile_client/features/activities/domain/repository.dart';
 import 'package:chilly_mobile_client/features/auth/data/auth_network_repository.dart';
 import 'package:chilly_mobile_client/features/auth/domain/repository.dart';
 import 'package:chilly_mobile_client/features/user/data/user_network_repository.dart';
@@ -14,5 +16,7 @@ void configDi() {
   getIt.registerSingleton<AuthRepository>(AuthNetworkRepository(),
       signalsReady: true);
   getIt.registerSingleton<UserRepository>(UserNetworkRepository(),
+      signalsReady: true);
+  getIt.registerSingleton<ActivityRepository>(ActivityNetworkRepository(),
       signalsReady: true);
 }

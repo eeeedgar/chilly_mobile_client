@@ -19,7 +19,6 @@ class UserChangeNotifierImplementation extends UserChangeNotifier {
   void setUser(UserEntity user) {
     _user = user;
     notifyListeners();
-    print('[UserChangeNotifier] $user');
   }
 
   @override
