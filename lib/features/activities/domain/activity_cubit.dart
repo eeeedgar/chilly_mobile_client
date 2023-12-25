@@ -1,6 +1,7 @@
 import 'package:chilly_mobile_client/app/di/config.dart';
 import 'package:chilly_mobile_client/features/activities/data/add_to_favorites_dto.dart';
 import 'package:chilly_mobile_client/features/activities/data/create_activity_dto.dart';
+import 'package:chilly_mobile_client/features/activities/data/update_activity_dto.dart';
 import 'package:chilly_mobile_client/features/activities/domain/activity_meta.dart';
 import 'package:chilly_mobile_client/features/activities/domain/create_activity_entity.dart';
 import 'package:chilly_mobile_client/features/activities/domain/repository.dart';
@@ -40,11 +41,8 @@ class ActivityCubit extends Cubit<ActivityState> {
     await fetchActivities();
   }
 
-  // Future<void> editActivity(String id) async {
-  //   await getIt<ActivityRepository>().addToFavorites(
-  //     AddToFavoritesDto.fromActivityId(
-  //       id,
-  //     ),
-  //   );
-  // }
+  Future<void> editActivity(String id, UpdateActivityDto dto) async {
+    await getIt<ActivityRepository>().updateActivity(id, dto);
+    await fetchActivities();
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:chilly_mobile_client/app/router/app_router.gr.dart';
 import 'package:chilly_mobile_client/app/router/auth_guard.dart';
+import 'package:chilly_mobile_client/features/activities/presentation/edit_activity_screen.dart';
 
 @AutoRouterConfig(
   replaceInRouteName: 'Modal|Screen|Dialog,Route',
@@ -42,6 +43,16 @@ class AppRouter extends $AppRouter {
         AutoRoute(
           page: ProfileRoute.page,
           path: '/profile',
+          guards: [NeedAuthGuard()],
+        ),
+        AutoRoute(
+          page: ProfileEditRoute.page,
+          path: '/profile_edit',
+          guards: [NeedAuthGuard()],
+        ),
+        AutoRoute(
+          page: ActivityEditRoute.page,
+          path: '/activity_edit',
           guards: [NeedAuthGuard()],
         ),
       ];

@@ -1,5 +1,8 @@
+import 'package:chilly_mobile_client/app/di/config.dart';
 import 'package:chilly_mobile_client/app/network/dio.dart';
+import 'package:chilly_mobile_client/features/user/data/update_user_dto.dart';
 import 'package:chilly_mobile_client/features/user/domain/repository.dart';
+import 'package:chilly_mobile_client/features/user/domain/user_change_notifier.dart';
 import 'package:chilly_mobile_client/features/user/domain/user_entity.dart';
 import 'package:injectable/injectable.dart';
 
@@ -13,9 +16,9 @@ class UserNetworkRepository extends UserRepository {
   }
 
   @override
-  Future<UserEntity> updateUser(UserEntity editedUser) {
-    // TODO: implement updateUser
-    throw UnimplementedError();
+  Future<void> updateUser(UpdateUserDto dto) async {
+    final user = getIt<UserChangeNotifier>().user!;
+    await dio.patch('/users/${user.id}', data: dto.toJson());
   }
 
   @override

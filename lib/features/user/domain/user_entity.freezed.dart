@@ -23,7 +23,6 @@ mixin _$UserEntity {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get login => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
   String get profilePicUrl => throw _privateConstructorUsedError;
   DateTime get registeredAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
@@ -44,7 +43,6 @@ abstract class $UserEntityCopyWith<$Res> {
       {String id,
       String name,
       String login,
-      String password,
       String profilePicUrl,
       DateTime registeredAt,
       DateTime updatedAt});
@@ -66,7 +64,6 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
     Object? id = null,
     Object? name = null,
     Object? login = null,
-    Object? password = null,
     Object? profilePicUrl = null,
     Object? registeredAt = null,
     Object? updatedAt = null,
@@ -83,10 +80,6 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
       login: null == login
           ? _value.login
           : login // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
               as String,
       profilePicUrl: null == profilePicUrl
           ? _value.profilePicUrl
@@ -116,7 +109,6 @@ abstract class _$$UserEntityImplCopyWith<$Res>
       {String id,
       String name,
       String login,
-      String password,
       String profilePicUrl,
       DateTime registeredAt,
       DateTime updatedAt});
@@ -136,7 +128,6 @@ class __$$UserEntityImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? login = null,
-    Object? password = null,
     Object? profilePicUrl = null,
     Object? registeredAt = null,
     Object? updatedAt = null,
@@ -153,10 +144,6 @@ class __$$UserEntityImplCopyWithImpl<$Res>
       login: null == login
           ? _value.login
           : login // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
               as String,
       profilePicUrl: null == profilePicUrl
           ? _value.profilePicUrl
@@ -181,7 +168,6 @@ class _$UserEntityImpl implements _UserEntity {
       {required this.id,
       required this.name,
       required this.login,
-      required this.password,
       required this.profilePicUrl,
       required this.registeredAt,
       required this.updatedAt});
@@ -196,8 +182,6 @@ class _$UserEntityImpl implements _UserEntity {
   @override
   final String login;
   @override
-  final String password;
-  @override
   final String profilePicUrl;
   @override
   final DateTime registeredAt;
@@ -206,7 +190,7 @@ class _$UserEntityImpl implements _UserEntity {
 
   @override
   String toString() {
-    return 'UserEntity(id: $id, name: $name, login: $login, password: $password, profilePicUrl: $profilePicUrl, registeredAt: $registeredAt, updatedAt: $updatedAt)';
+    return 'UserEntity(id: $id, name: $name, login: $login, profilePicUrl: $profilePicUrl, registeredAt: $registeredAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -217,8 +201,6 @@ class _$UserEntityImpl implements _UserEntity {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.login, login) || other.login == login) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
             (identical(other.profilePicUrl, profilePicUrl) ||
                 other.profilePicUrl == profilePicUrl) &&
             (identical(other.registeredAt, registeredAt) ||
@@ -229,8 +211,8 @@ class _$UserEntityImpl implements _UserEntity {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, login, password,
-      profilePicUrl, registeredAt, updatedAt);
+  int get hashCode => Object.hash(
+      runtimeType, id, name, login, profilePicUrl, registeredAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -251,7 +233,6 @@ abstract class _UserEntity implements UserEntity {
       {required final String id,
       required final String name,
       required final String login,
-      required final String password,
       required final String profilePicUrl,
       required final DateTime registeredAt,
       required final DateTime updatedAt}) = _$UserEntityImpl;
@@ -265,8 +246,6 @@ abstract class _UserEntity implements UserEntity {
   String get name;
   @override
   String get login;
-  @override
-  String get password;
   @override
   String get profilePicUrl;
   @override

@@ -50,6 +50,8 @@ class ActivityNetworkRepository extends ActivityRepository {
 
   @override
   Future<void> updateActivity(String activityId, UpdateActivityDto dto) async {
+    print('[eeee] ${activityId}');
+    print('[eeee] ${dto.toJson()}');
     await dio.patch('/events/$activityId', data: dto.toJson());
   }
 

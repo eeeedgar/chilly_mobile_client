@@ -9,7 +9,6 @@ class UserEntity with _$UserEntity {
     required String id,
     required String name,
     required String login,
-    required String password,
     required String profilePicUrl,
     required DateTime registeredAt,
     required DateTime updatedAt,
