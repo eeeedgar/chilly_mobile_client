@@ -11,5 +11,6 @@ class SearchSettings with _$SearchSettings {
     double? maxLatitude,
     double? minLongitude,
     double? maxLongitude,
+    String? searchByTagText,
   }) = _SearchSettings;
 }

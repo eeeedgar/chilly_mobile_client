@@ -13,6 +13,8 @@ abstract class SearchChangeNotifier extends ChangeNotifier {
     double maxLong,
   );
 
+  void setSearchByTagText(String value);
+
   SearchSettings get settings;
 
   void reset();
@@ -54,6 +56,12 @@ class SearchChangeNotifierImplementation extends SearchChangeNotifier {
   @override
   void setOnlyActive(bool value) {
     _settings = _settings.copyWith(onlyActive: value);
+    notifyListeners();
+  }
+
+  @override
+  void setSearchByTagText(String value) {
+    _settings = _settings.copyWith(searchByTagText: value);
     notifyListeners();
   }
 }

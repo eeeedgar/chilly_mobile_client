@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:chilly_mobile_client/app/common/styles/app_text_style.dart';
+import 'package:chilly_mobile_client/app/di/config.dart';
 import 'package:chilly_mobile_client/app/router/app_router.gr.dart';
 import 'package:chilly_mobile_client/features/activities/domain/activity_cubit.dart';
 import 'package:chilly_mobile_client/features/activities/presentation/create_activity_modal.dart';
 import 'package:chilly_mobile_client/features/activities/presentation/view_activity_modal.dart';
-import 'package:chilly_mobile_client/features/filter/domain/filter_cubit.dart';
+import 'package:chilly_mobile_client/features/search/domain/search_change_notifier.dart';
 import 'package:chilly_mobile_client/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -107,10 +108,11 @@ class _MarkerScreenState extends State<MarkerScreen> {
                 focusNode: _focusNode,
                 decoration: const InputDecoration.collapsed(
                   // todo: make sure
-                  hintText: 'Search by title, tag or description',
+                  hintText: 'Search by tag',
                 ),
                 onChanged: (value) {
-                  context.read<FilterCubit>().setSearchText(value);
+                  getIt<SearchChangeNotifier>().setSearchByTagText(value);
+                  context.read<ActivityCubit>().fetchActivities();
                 },
               )
             : Text(

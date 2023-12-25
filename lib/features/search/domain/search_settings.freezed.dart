@@ -22,6 +22,7 @@ mixin _$SearchSettings {
   double? get maxLatitude => throw _privateConstructorUsedError;
   double? get minLongitude => throw _privateConstructorUsedError;
   double? get maxLongitude => throw _privateConstructorUsedError;
+  String? get searchByTagText => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SearchSettingsCopyWith<SearchSettings> get copyWith =>
@@ -40,7 +41,8 @@ abstract class $SearchSettingsCopyWith<$Res> {
       double? minLatitude,
       double? maxLatitude,
       double? minLongitude,
-      double? maxLongitude});
+      double? maxLongitude,
+      String? searchByTagText});
 }
 
 /// @nodoc
@@ -62,6 +64,7 @@ class _$SearchSettingsCopyWithImpl<$Res, $Val extends SearchSettings>
     Object? maxLatitude = freezed,
     Object? minLongitude = freezed,
     Object? maxLongitude = freezed,
+    Object? searchByTagText = freezed,
   }) {
     return _then(_value.copyWith(
       onlyActive: null == onlyActive
@@ -88,6 +91,10 @@ class _$SearchSettingsCopyWithImpl<$Res, $Val extends SearchSettings>
           ? _value.maxLongitude
           : maxLongitude // ignore: cast_nullable_to_non_nullable
               as double?,
+      searchByTagText: freezed == searchByTagText
+          ? _value.searchByTagText
+          : searchByTagText // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -106,7 +113,8 @@ abstract class _$$SearchSettingsImplCopyWith<$Res>
       double? minLatitude,
       double? maxLatitude,
       double? minLongitude,
-      double? maxLongitude});
+      double? maxLongitude,
+      String? searchByTagText});
 }
 
 /// @nodoc
@@ -126,6 +134,7 @@ class __$$SearchSettingsImplCopyWithImpl<$Res>
     Object? maxLatitude = freezed,
     Object? minLongitude = freezed,
     Object? maxLongitude = freezed,
+    Object? searchByTagText = freezed,
   }) {
     return _then(_$SearchSettingsImpl(
       onlyActive: null == onlyActive
@@ -152,6 +161,10 @@ class __$$SearchSettingsImplCopyWithImpl<$Res>
           ? _value.maxLongitude
           : maxLongitude // ignore: cast_nullable_to_non_nullable
               as double?,
+      searchByTagText: freezed == searchByTagText
+          ? _value.searchByTagText
+          : searchByTagText // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -165,7 +178,8 @@ class _$SearchSettingsImpl implements _SearchSettings {
       this.minLatitude,
       this.maxLatitude,
       this.minLongitude,
-      this.maxLongitude});
+      this.maxLongitude,
+      this.searchByTagText});
 
   @override
   @JsonKey()
@@ -181,10 +195,12 @@ class _$SearchSettingsImpl implements _SearchSettings {
   final double? minLongitude;
   @override
   final double? maxLongitude;
+  @override
+  final String? searchByTagText;
 
   @override
   String toString() {
-    return 'SearchSettings(onlyActive: $onlyActive, inRange: $inRange, minLatitude: $minLatitude, maxLatitude: $maxLatitude, minLongitude: $minLongitude, maxLongitude: $maxLongitude)';
+    return 'SearchSettings(onlyActive: $onlyActive, inRange: $inRange, minLatitude: $minLatitude, maxLatitude: $maxLatitude, minLongitude: $minLongitude, maxLongitude: $maxLongitude, searchByTagText: $searchByTagText)';
   }
 
   @override
@@ -202,12 +218,14 @@ class _$SearchSettingsImpl implements _SearchSettings {
             (identical(other.minLongitude, minLongitude) ||
                 other.minLongitude == minLongitude) &&
             (identical(other.maxLongitude, maxLongitude) ||
-                other.maxLongitude == maxLongitude));
+                other.maxLongitude == maxLongitude) &&
+            (identical(other.searchByTagText, searchByTagText) ||
+                other.searchByTagText == searchByTagText));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, onlyActive, inRange, minLatitude,
-      maxLatitude, minLongitude, maxLongitude);
+      maxLatitude, minLongitude, maxLongitude, searchByTagText);
 
   @JsonKey(ignore: true)
   @override
@@ -224,7 +242,8 @@ abstract class _SearchSettings implements SearchSettings {
       final double? minLatitude,
       final double? maxLatitude,
       final double? minLongitude,
-      final double? maxLongitude}) = _$SearchSettingsImpl;
+      final double? maxLongitude,
+      final String? searchByTagText}) = _$SearchSettingsImpl;
 
   @override
   bool get onlyActive;
@@ -238,6 +257,8 @@ abstract class _SearchSettings implements SearchSettings {
   double? get minLongitude;
   @override
   double? get maxLongitude;
+  @override
+  String? get searchByTagText;
   @override
   @JsonKey(ignore: true)
   _$$SearchSettingsImplCopyWith<_$SearchSettingsImpl> get copyWith =>

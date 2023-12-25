@@ -35,6 +35,7 @@ class ActivityNetworkRepository extends ActivityRepository {
       'maxLatitude': (searchSettings.maxLatitude ?? 100).round(),
       'minLongitude': (searchSettings.minLongitude ?? -100).round(),
       'maxLongitude': (searchSettings.maxLongitude ?? 100).round(),
+      'tags': searchSettings.searchByTagText,
     }).then((value) => (value.data['events'] as List)
         .map((x) => ActivityMeta.fromJson(x))
         .toList());
