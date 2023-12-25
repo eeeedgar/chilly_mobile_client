@@ -7,7 +7,7 @@ class AppTextStyle {
     fontFamily: 'Monaco',
   );
   static TextStyle body = const TextStyle(
-    fontWeight: FontWeight.w900,
+    // fontWeight: FontWeight.w900,
     fontSize: 16,
     fontFamily: 'Monaco',
   );
@@ -25,6 +25,11 @@ class AppTextStyle {
   static TextStyle tag = const TextStyle(
     fontWeight: FontWeight.w900,
     fontSize: 16,
+    fontFamily: 'Monaco',
+  );
+  static TextStyle subtext = const TextStyle(
+    fontSize: 16,
+    color: Colors.black45,
     fontFamily: 'Monaco',
   );
 }

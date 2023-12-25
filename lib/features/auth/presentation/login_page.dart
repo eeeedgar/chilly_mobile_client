@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:chilly_mobile_client/app/common/styles/app_text_style.dart';
 import 'package:chilly_mobile_client/app/router/app_router.gr.dart';
 import 'package:chilly_mobile_client/features/auth/data/dto/request/user_login_dto.dart';
 import 'package:chilly_mobile_client/features/auth/domain/auth_cubit.dart';
@@ -23,47 +24,53 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocProvider(
       create: (context) => AuthCubit(),
       child: Scaffold(
-          body: SafeArea(
-        child: Form(
-          child: ListView(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            children: [
-              TextFormField(
-                controller: _loginController,
-                decoration: const InputDecoration(
-                  labelText: 'login',
-                ),
-              ),
-              TextFormField(
-                controller: _passwordController,
-                decoration: const InputDecoration(
-                  labelText: 'password',
-                ),
-                obscureText: true,
-              ),
-              ElevatedButton(
-                onPressed: () async {
-                  await context.read<AuthCubit>().login(
-                        UserLoginDto(
-                          login: _loginController.text,
-                          password: _passwordController.text,
-                        ),
-                      );
-
-                  appRouter.replace(const MarkerRoute());
-                },
-                child: const Text('login'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  appRouter.replace(const RegisterRoute());
-                },
-                child: const Text('register'),
-              ),
-            ],
+          appBar: AppBar(
+            title: Text(
+              'Chilly',
+              style: AppTextStyle.h1,
+            ),
           ),
-        ),
-      )),
+          body: SafeArea(
+            child: Form(
+              child: ListView(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                children: [
+                  TextFormField(
+                    controller: _loginController,
+                    decoration: const InputDecoration(
+                      labelText: 'login',
+                    ),
+                  ),
+                  TextFormField(
+                    controller: _passwordController,
+                    decoration: const InputDecoration(
+                      labelText: 'password',
+                    ),
+                    obscureText: true,
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      await context.read<AuthCubit>().login(
+                            UserLoginDto(
+                              login: _loginController.text,
+                              password: _passwordController.text,
+                            ),
+                          );
+
+                      appRouter.replace(const MarkerRoute());
+                    },
+                    child: const Text('login'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      appRouter.replace(const RegisterRoute());
+                    },
+                    child: const Text('register'),
+                  ),
+                ],
+              ),
+            ),
+          )),
     );
   }
 }

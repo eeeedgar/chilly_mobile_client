@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:chilly_mobile_client/app/common/styles/app_text_style.dart';
 import 'package:chilly_mobile_client/app/di/config.dart';
-import 'package:chilly_mobile_client/app/di/user_change_notifier.dart';
 import 'package:chilly_mobile_client/app/router/app_router.gr.dart';
 import 'package:chilly_mobile_client/features/activities/domain/activity_cubit.dart';
 import 'package:chilly_mobile_client/features/activities/presentation/create_activity_modal.dart';
 import 'package:chilly_mobile_client/features/activities/presentation/view_activity_modal.dart';
 import 'package:chilly_mobile_client/features/filter/domain/filter_cubit.dart';
+import 'package:chilly_mobile_client/features/user/domain/user_change_notifier.dart';
 import 'package:chilly_mobile_client/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,14 +54,37 @@ class _MarkerScreenState extends State<MarkerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.compass_calibration),
-        onPressed: () {
-          _mapController.move(const LatLng(59.937500, 30.308611), 10);
-          _mapController.rotate(0);
-        },
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          FloatingActionButton(
+            child: const Icon(Icons.settings),
+            onPressed: () {},
+          ),
+          const SizedBox(
+            height: 12,
+          ),
+          FloatingActionButton(
+            child: const Icon(Icons.cached),
+            onPressed: () {
+              context.read<ActivityCubit>().fetchActivities();
+            },
+          ),
+          const SizedBox(
+            height: 12,
+          ),
+          FloatingActionButton(
+            child: const Icon(Icons.compass_calibration),
+            onPressed: () {
+              _mapController.move(const LatLng(59.937500, 30.308611), 10);
+              _mapController.rotate(0);
+            },
+          ),
+        ],
       ),
       appBar: AppBar(
+        centerTitle: false,
         leading: IconButton(
           onPressed: _logout,
           icon: const Icon(Icons.logout),
@@ -70,6 +93,9 @@ class _MarkerScreenState extends State<MarkerScreen> {
             ? TextField(
                 controller: _searchController,
                 focusNode: _focusNode,
+                decoration: const InputDecoration.collapsed(
+                  hintText: 'Search by title or tag',
+                ),
                 onChanged: (value) {
                   context.read<FilterCubit>().setSearchText(value);
                 },
@@ -80,14 +106,15 @@ class _MarkerScreenState extends State<MarkerScreen> {
               ),
         actions: [
           IconButton(
-              onPressed: () {
-                _searchActive = !_searchActive;
-                if (_searchActive) {
-                  _focusNode.requestFocus();
-                }
-                setState(() {});
-              },
-              icon: const Icon(Icons.search)),
+            onPressed: () {
+              _searchActive = !_searchActive;
+              if (_searchActive) {
+                _focusNode.requestFocus();
+              }
+              setState(() {});
+            },
+            icon: const Icon(Icons.search),
+          ),
         ],
       ),
       body: Column(
@@ -106,7 +133,8 @@ class _MarkerScreenState extends State<MarkerScreen> {
                       return;
                     }
                     customMarkers.add(buildPin(p));
-                    _mapController.move(p, 15);
+                    _mapController.move(
+                        LatLng(p.latitude - 3e-3, p.longitude), 15);
                     await showModalBottomSheet(
                         isScrollControlled: true,
                         context: context,

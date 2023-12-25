@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:chilly_mobile_client/app/di/config.dart';
-import 'package:chilly_mobile_client/app/di/user_change_notifier.dart';
 import 'package:chilly_mobile_client/app/router/app_router.gr.dart';
+import 'package:chilly_mobile_client/features/user/domain/user_change_notifier.dart';
 
 class NeedAuthGuard extends AutoRouteGuard {
   @override

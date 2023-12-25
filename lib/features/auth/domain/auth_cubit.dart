@@ -1,9 +1,9 @@
 import 'package:chilly_mobile_client/app/di/config.dart';
-import 'package:chilly_mobile_client/app/di/user_change_notifier.dart';
 import 'package:chilly_mobile_client/app/network/dio.dart';
 import 'package:chilly_mobile_client/features/auth/data/dto/request/user_login_dto.dart';
 import 'package:chilly_mobile_client/features/auth/domain/repository.dart';
 import 'package:chilly_mobile_client/features/user/domain/repository.dart';
+import 'package:chilly_mobile_client/features/user/domain/user_change_notifier.dart';
 import 'package:chilly_mobile_client/features/user/domain/user_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

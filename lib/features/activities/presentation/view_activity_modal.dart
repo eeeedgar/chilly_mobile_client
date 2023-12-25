@@ -1,5 +1,6 @@
 import 'package:chilly_mobile_client/app/common/styles/app_text_style.dart';
 import 'package:chilly_mobile_client/features/activities/domain/activity_entity.dart';
+import 'package:chilly_mobile_client/features/activities/presentation/compoments/tag_chip.dart';
 import 'package:chilly_mobile_client/features/user/domain/user_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,19 +47,19 @@ class _ViewActivityModalState extends State<ViewActivityModal> {
               const SizedBox(
                 height: 20,
               ),
-              // SizedBox(
-              //   height: 40,
-              //   child: ListView.builder(
-              //       scrollDirection: Axis.horizontal,
-              //       itemCount: widget.activity.tags!.length,
-              //       itemBuilder: (context, index) {
-              //         return TagChip(
-              //             name: widget.activity.tags!.elementAt(index));
-              //       }),
-              // ),
-              // const SizedBox(
-              //   height: 20,
-              // ),
+              SizedBox(
+                height: 40,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: widget.activity.tags.length,
+                    itemBuilder: (context, index) {
+                      return TagChip(
+                          name: widget.activity.tags.elementAt(index).title);
+                    }),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
               SizedBox(
                 height: 100,
                 child: ListView(
