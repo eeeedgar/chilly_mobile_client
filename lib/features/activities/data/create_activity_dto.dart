@@ -7,8 +7,8 @@ part 'create_activity_dto.g.dart';
 class CreateActivityDto {
   final String title;
   final String description;
-  final int latitude;
-  final int longitude;
+  final double latitude;
+  final double longitude;
   final DateTime startTime;
   final DateTime finishTime;
   final List<String> pictures;
@@ -25,8 +25,8 @@ class CreateActivityDto {
       CreateActivityDto(
           entity.title!,
           entity.description!,
-          entity.latitude!.round(),
-          entity.longitude!.round(),
+          entity.latitude!,
+          entity.longitude!,
           entity.startTime!,
           entity.finishTime!,
           entity.pictures!,

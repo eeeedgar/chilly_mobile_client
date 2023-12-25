@@ -31,10 +31,6 @@ class _ViewActivityModalState extends State<ViewActivityModal> {
               const SizedBox(
                 height: 20,
               ),
-              // _Row(name: 'Address', value: widget.activity.address!),
-              // const SizedBox(
-              //   height: 20,
-              // ),
               _Row(name: 'from', value: widget.meta.event.startTime.formatE()),
               const SizedBox(
                 height: 20,
@@ -44,12 +40,10 @@ class _ViewActivityModalState extends State<ViewActivityModal> {
                 height: 20,
               ),
               _Row(name: 'Description', value: widget.meta.event.description),
-              const SizedBox(
-                height: 20,
-              ),
               SizedBox(
-                height: 40,
+                height: 60,
                 child: ListView.builder(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
                     scrollDirection: Axis.horizontal,
                     itemCount: widget.meta.event.tags.length,
                     itemBuilder: (context, index) {
@@ -57,43 +51,47 @@ class _ViewActivityModalState extends State<ViewActivityModal> {
                           name: widget.meta.event.tags.elementAt(index).title);
                     }),
               ),
-              const SizedBox(
-                height: 20,
-              ),
               SizedBox(
-                height: 100,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: const [
-                    _Image('assets/jpg/party.jpg'),
-                    _Image('assets/jpg/party-2.jpg'),
-                    _Image('assets/jpg/lights.jpg'),
-                  ],
+                height: 60,
+                child: ListView.builder(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: widget.meta.event.pictures.length,
+                    itemBuilder: (context, index) {
+                      return _Image(
+                          widget.meta.event.pictures.elementAt(index));
+                    }),
+              ),
+              if (widget.meta.isActive && !widget.meta.isFavorite)
+                ElevatedButton(
+                  onPressed: () {
+                    // todo: scope
+                  },
+                  child: Text(
+                    'I will go'.toUpperCase(),
+                    style: AppTextStyle.button,
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              // context.read<UserCubit>().isInFavorites(widget.activity.id!)
-              //     ? ElevatedButton(
-              //         onPressed: () {
-              //           context
-              //               .read<UserCubit>()
-              //               .removeFromFavorites(widget.activity.id!);
-              //         },
-              //         child: const Text('Remove from favorites'),
-              //       )
-              //     : ElevatedButton(
-              //         onPressed: () {
-              //           context
-              //               .read<UserCubit>()
-              //               .addToFavorites(widget.activity.id!);
-              //         },
-              //         child: Text(
-              //           'I will go'.toUpperCase(),
-              //           style: AppTextStyle.button,
-              //         ),
-              //       ),
+              if (widget.meta.isFavorite)
+                ElevatedButton(
+                  onPressed: () {
+                    // todo: scope
+                  },
+                  child: Text(
+                    'Remove from favorites'.toUpperCase(),
+                    style: AppTextStyle.button,
+                  ),
+                ),
+              if (widget.meta.isOwn)
+                ElevatedButton(
+                  onPressed: () {
+                    // todo: scope
+                  },
+                  child: Text(
+                    'Edit'.toUpperCase(),
+                    style: AppTextStyle.button,
+                  ),
+                ),
             ],
           ),
         );
@@ -118,11 +116,11 @@ class _Row extends StatelessWidget {
       children: [
         Text(
           name,
-          style: AppTextStyle.body,
+          style: AppTextStyle.subtext,
         ),
         Text(
           value,
-          style: AppTextStyle.bodyHighlight,
+          style: AppTextStyle.body,
         ),
       ],
     );
@@ -153,7 +151,7 @@ class _Image extends StatelessWidget {
                         onTap: () {
                           Navigator.of(context).pop();
                         },
-                        child: Image.asset(
+                        child: Image.network(
                           path,
                           fit: BoxFit.fitWidth,
                         ),
@@ -163,7 +161,7 @@ class _Image extends StatelessWidget {
           child: SizedBox(
             height: 100,
             width: 100,
-            child: Image.asset(
+            child: Image.network(
               path,
               fit: BoxFit.fill,
             ),

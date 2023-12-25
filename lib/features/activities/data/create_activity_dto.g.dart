@@ -10,8 +10,8 @@ CreateActivityDto _$CreateActivityDtoFromJson(Map<String, dynamic> json) =>
     CreateActivityDto(
       json['title'] as String,
       json['description'] as String,
-      json['latitude'] as int,
-      json['longitude'] as int,
+      json['latitude'] as double,
+      json['longitude'] as double,
       DateTime.parse(json['startTime'] as String),
       DateTime.parse(json['finishTime'] as String),
       (json['pictures'] as List<dynamic>).map((e) => e as String).toList(),

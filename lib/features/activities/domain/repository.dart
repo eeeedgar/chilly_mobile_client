@@ -20,4 +20,6 @@ abstract class ActivityRepository {
 
   // need token
   Future<List<ActivityMeta>> getFavoriteActivities();
+
+  Future<void> addToFavorites(String id);
 }

@@ -11,8 +11,8 @@ _$ActivityEntityImpl _$$ActivityEntityImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       title: json['title'] as String,
       description: json['description'] as String,
-      latitude: (json['latitude'] as num).toDouble(),
-      longitude: (json['longitude'] as num).toDouble(),
+      latitude: double.parse('${json['latitude']}'),
+      longitude: double.parse('${json['longitude']}'),
       startTime: DateTime.parse(json['startTime'] as String),
       finishTime: DateTime.parse(json['finishTime'] as String),
       pictures:

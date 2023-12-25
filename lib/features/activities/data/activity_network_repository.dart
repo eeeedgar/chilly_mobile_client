@@ -62,4 +62,7 @@ class ActivityNetworkRepository extends ActivityRepository {
         .map((x) => ActivityMeta.fromJson(x))
         .toList());
   }
+
+  @override
+  Future<void> addToFavorites(String id) async {}
 }
