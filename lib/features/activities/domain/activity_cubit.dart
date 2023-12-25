@@ -1,6 +1,6 @@
 import 'package:chilly_mobile_client/app/di/config.dart';
 import 'package:chilly_mobile_client/features/activities/data/create_activity_dto.dart';
-import 'package:chilly_mobile_client/features/activities/domain/activity_entity.dart';
+import 'package:chilly_mobile_client/features/activities/domain/activity_meta.dart';
 import 'package:chilly_mobile_client/features/activities/domain/create_activity_entity.dart';
 import 'package:chilly_mobile_client/features/activities/domain/repository.dart';
 import 'package:chilly_mobile_client/features/user/domain/user_change_notifier.dart';
@@ -24,7 +24,6 @@ class ActivityCubit extends Cubit<ActivityState> {
 
   Future<void> fetchActivities() async {
     final activitiesMeta = await getIt<ActivityRepository>().getActivities();
-    emit(state.copyWith(
-        activities: activitiesMeta.map((e) => e.event).toList()));
+    emit(state.copyWith(activities: activitiesMeta));
   }
 }

@@ -5,6 +5,6 @@ class ActivityState with _$ActivityState {
   ActivityState._();
 
   factory ActivityState({
-    @Default(<ActivityEntity>[]) List<ActivityEntity> activities,
+    @Default(<ActivityMeta>[]) List<ActivityMeta> activities,
   }) = _ActivityState;
 }

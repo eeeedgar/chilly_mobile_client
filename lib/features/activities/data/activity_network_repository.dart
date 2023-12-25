@@ -43,7 +43,6 @@ class ActivityNetworkRepository extends ActivityRepository {
 
   @override
   Future<ActivityEntity> getActivity(String activityId) {
-    // TODO: implement getActivity
     throw UnimplementedError();
   }
 
@@ -51,5 +50,16 @@ class ActivityNetworkRepository extends ActivityRepository {
   Future<void> updateActivity(String activityId) {
     // TODO: implement updateActivity
     throw UnimplementedError();
+  }
+
+  @override
+  Future<List<ActivityMeta>> getFavoriteActivities() async {
+    // todo: check
+    final user = getIt<UserChangeNotifier>().user!;
+    return await dio.get('/users/${user.id}/favorites', queryParameters: {
+      'type': 'Event',
+    }).then((value) => (value.data['events'] as List)
+        .map((x) => ActivityMeta.fromJson(x))
+        .toList());
   }
 }

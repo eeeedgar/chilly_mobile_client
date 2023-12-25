@@ -167,42 +167,48 @@ class _MarkerScreenState extends State<MarkerScreen> {
                       customMarkers.clear();
                       return MarkerLayer(
                         markers: customMarkers
-                          ..addAll(state
-                              // .applyFilter(filterState,
-                              //     context.read<UserCubit>())
-                              .activities
-                              .map((e) => Marker(
-                                    point: LatLng(e.latitude, e.longitude),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        _mapController.move(
-                                            LatLng(e.latitude, e.longitude),
-                                            15);
-                                        showModalBottomSheet(
-                                            isScrollControlled: true,
-                                            context: context,
-                                            builder: (context) => SafeArea(
-                                                  top: false,
-                                                  child: Padding(
-                                                    padding: EdgeInsets.only(
-                                                        bottom: MediaQuery.of(
-                                                                context)
-                                                            .viewInsets
-                                                            .bottom),
-                                                    child: ViewActivityModal(
-                                                      activity: e,
-                                                    ),
+                          ..addAll(state.activities
+                              .map(
+                                (e) => Marker(
+                                  point: LatLng(
+                                      e.event.latitude, e.event.longitude),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      _mapController.move(
+                                          LatLng(e.event.latitude,
+                                              e.event.longitude),
+                                          15);
+                                      showModalBottomSheet(
+                                          isScrollControlled: true,
+                                          context: context,
+                                          builder: (context) => SafeArea(
+                                                top: false,
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      bottom:
+                                                          MediaQuery.of(context)
+                                                              .viewInsets
+                                                              .bottom),
+                                                  child: ViewActivityModal(
+                                                    meta: e,
                                                   ),
-                                                ));
-                                      },
-                                      child: const Icon(
-                                        Icons.location_pin,
-                                        size: 60,
-                                      ),
+                                                ),
+                                              ));
+                                    },
+                                    child: Icon(
+                                      Icons.location_pin,
+                                      size: 60,
+                                      color: Color.fromRGBO(
+                                          e.isOwn ? 140 : 70,
+                                          e.isFavorite ? 120 : 60,
+                                          e.isActive ? 160 : 80,
+                                          0.8),
                                     ),
-                                    width: 60,
-                                    height: 60,
-                                  ))
+                                  ),
+                                  width: 60,
+                                  height: 60,
+                                ),
+                              )
                               .toList()),
                         rotate: counterRotate,
                         alignment: selectedAlignment,

@@ -1,5 +1,5 @@
 import 'package:chilly_mobile_client/app/common/styles/app_text_style.dart';
-import 'package:chilly_mobile_client/features/activities/domain/activity_entity.dart';
+import 'package:chilly_mobile_client/features/activities/domain/activity_meta.dart';
 import 'package:chilly_mobile_client/features/activities/presentation/compoments/tag_chip.dart';
 import 'package:chilly_mobile_client/features/user/domain/user_cubit.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +8,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ViewActivityModal extends StatefulWidget {
   const ViewActivityModal({
     super.key,
-    required this.activity,
+    required this.meta,
   });
 
-  final ActivityEntity activity;
+  final ActivityMeta meta;
 
   @override
   State<ViewActivityModal> createState() => _ViewActivityModalState();
@@ -27,7 +27,7 @@ class _ViewActivityModalState extends State<ViewActivityModal> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              _Row(name: 'Title', value: widget.activity.title),
+              _Row(name: 'Title', value: widget.meta.event.title),
               const SizedBox(
                 height: 20,
               ),
@@ -35,15 +35,15 @@ class _ViewActivityModalState extends State<ViewActivityModal> {
               // const SizedBox(
               //   height: 20,
               // ),
-              _Row(name: 'from', value: widget.activity.startTime.formatE()),
+              _Row(name: 'from', value: widget.meta.event.startTime.formatE()),
               const SizedBox(
                 height: 20,
               ),
-              _Row(name: 'to', value: widget.activity.finishTime.formatE()),
+              _Row(name: 'to', value: widget.meta.event.finishTime.formatE()),
               const SizedBox(
                 height: 20,
               ),
-              _Row(name: 'Description', value: widget.activity.description),
+              _Row(name: 'Description', value: widget.meta.event.description),
               const SizedBox(
                 height: 20,
               ),
@@ -51,10 +51,10 @@ class _ViewActivityModalState extends State<ViewActivityModal> {
                 height: 40,
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: widget.activity.tags.length,
+                    itemCount: widget.meta.event.tags.length,
                     itemBuilder: (context, index) {
                       return TagChip(
-                          name: widget.activity.tags.elementAt(index).title);
+                          name: widget.meta.event.tags.elementAt(index).title);
                     }),
               ),
               const SizedBox(

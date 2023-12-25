@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ActivityState {
-  List<ActivityEntity> get activities => throw _privateConstructorUsedError;
+  List<ActivityMeta> get activities => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ActivityStateCopyWith<ActivityState> get copyWith =>
@@ -29,7 +29,7 @@ abstract class $ActivityStateCopyWith<$Res> {
           ActivityState value, $Res Function(ActivityState) then) =
       _$ActivityStateCopyWithImpl<$Res, ActivityState>;
   @useResult
-  $Res call({List<ActivityEntity> activities});
+  $Res call({List<ActivityMeta> activities});
 }
 
 /// @nodoc
@@ -51,7 +51,7 @@ class _$ActivityStateCopyWithImpl<$Res, $Val extends ActivityState>
       activities: null == activities
           ? _value.activities
           : activities // ignore: cast_nullable_to_non_nullable
-              as List<ActivityEntity>,
+              as List<ActivityMeta>,
     ) as $Val);
   }
 }
@@ -64,7 +64,7 @@ abstract class _$$ActivityStateImplCopyWith<$Res>
       __$$ActivityStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<ActivityEntity> activities});
+  $Res call({List<ActivityMeta> activities});
 }
 
 /// @nodoc
@@ -84,7 +84,7 @@ class __$$ActivityStateImplCopyWithImpl<$Res>
       activities: null == activities
           ? _value._activities
           : activities // ignore: cast_nullable_to_non_nullable
-              as List<ActivityEntity>,
+              as List<ActivityMeta>,
     ));
   }
 }
@@ -93,14 +93,14 @@ class __$$ActivityStateImplCopyWithImpl<$Res>
 
 class _$ActivityStateImpl extends _ActivityState {
   _$ActivityStateImpl(
-      {final List<ActivityEntity> activities = const <ActivityEntity>[]})
+      {final List<ActivityMeta> activities = const <ActivityMeta>[]})
       : _activities = activities,
         super._();
 
-  final List<ActivityEntity> _activities;
+  final List<ActivityMeta> _activities;
   @override
   @JsonKey()
-  List<ActivityEntity> get activities {
+  List<ActivityMeta> get activities {
     if (_activities is EqualUnmodifiableListView) return _activities;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_activities);
@@ -132,12 +132,12 @@ class _$ActivityStateImpl extends _ActivityState {
 }
 
 abstract class _ActivityState extends ActivityState {
-  factory _ActivityState({final List<ActivityEntity> activities}) =
+  factory _ActivityState({final List<ActivityMeta> activities}) =
       _$ActivityStateImpl;
   _ActivityState._() : super._();
 
   @override
-  List<ActivityEntity> get activities;
+  List<ActivityMeta> get activities;
   @override
   @JsonKey(ignore: true)
   _$$ActivityStateImplCopyWith<_$ActivityStateImpl> get copyWith =>

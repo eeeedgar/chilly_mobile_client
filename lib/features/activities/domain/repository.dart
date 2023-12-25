@@ -17,4 +17,7 @@ abstract class ActivityRepository {
 
   // need token
   Future<void> deleteActivity(String activityId);
+
+  // need token
+  Future<List<ActivityMeta>> getFavoriteActivities();
 }
