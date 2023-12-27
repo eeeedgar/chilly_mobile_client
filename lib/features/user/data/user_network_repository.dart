@@ -10,9 +10,12 @@ import 'package:injectable/injectable.dart';
 class UserNetworkRepository extends UserRepository {
   @override
   Future<UserEntity> getUser(String userId) async {
-    return await dio.get('/users/$userId').then(
+    print('[eeee] [1] $userId');
+    final a = await dio.get('/users/$userId').then(
           (value) => UserEntity.fromJson(value.data),
         );
+    print('[eeee] [2] ${a.toJson()}');
+    return a;
   }
 
   @override

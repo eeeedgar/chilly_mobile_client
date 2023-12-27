@@ -28,7 +28,9 @@ class _SpecifyActivityDetailsScreenState
     extends State<SpecifyActivityDetailsScreen> {
   final _descriptionController = TextEditingController();
   final _tagController = TextEditingController();
+  final _imageController = TextEditingController();
   final _tags = List<TagEntity>.empty(growable: true);
+  final _images = List<String>.empty(growable: true);
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +113,13 @@ class _SpecifyActivityDetailsScreenState
                       }
                       return SizedBox(
                           height: 20,
-                          child: TagChip(name: _tags.elementAt(index).title));
+                          child: TagChip(
+                            name: _tags.elementAt(index).title,
+                            func: () {
+                              _tags.removeAt(index);
+                              setState(() {});
+                            },
+                          ));
                     }),
               ),
             ),
@@ -122,9 +130,71 @@ class _SpecifyActivityDetailsScreenState
               'Images',
               style: AppTextStyle.body,
             ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.add),
+            SizedBox(
+              height: 40,
+              child: Expanded(
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: _images.length + 1,
+                    itemBuilder: (context, index) {
+                      if (index == _images.length) {
+                        return IconButton(
+                            onPressed: () async {
+                              _imageController.text = '';
+                              String? result = await showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: const Text('Add image'),
+                                    content: SizedBox(
+                                      height: 100,
+                                      child: AppTextInput(
+                                        title: '',
+                                        controller: _imageController,
+                                      ),
+                                    ),
+                                    actions: <Widget>[
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.of(context,
+                                                  rootNavigator: true)
+                                              .pop(
+                                                  null); // dismisses only the dialog and returns false
+                                        },
+                                        child: const Text('No'),
+                                      ),
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.of(context,
+                                                  rootNavigator: true)
+                                              .pop(_imageController
+                                                  .text); // dismisses only the dialog and returns true
+                                        },
+                                        child: const Text('Yes'),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                              if (result == null) {
+                                return;
+                              }
+                              _images.add(result);
+                              setState(() {});
+                            },
+                            icon: const Icon(Icons.add));
+                      }
+                      return SizedBox(
+                          height: 20,
+                          child: TagChip(
+                            name: _images.elementAt(index),
+                            func: () {
+                              _images.removeAt(index);
+                              setState(() {});
+                            },
+                          ));
+                    }),
+              ),
             ),
             const SizedBox(
               height: 40,
@@ -132,9 +202,10 @@ class _SpecifyActivityDetailsScreenState
             ElevatedButton(
               onPressed: () {
                 final event = widget.createActivityEntity.copyWith(
-                    description: _descriptionController.text,
-                    tags: _tags,
-                    pictures: []);
+                  description: _descriptionController.text,
+                  tags: _tags,
+                  pictures: _images,
+                );
                 context.read<ActivityCubit>().createActivity(event);
                 appRouter.replaceAll([const MarkerRoute()]);
               },

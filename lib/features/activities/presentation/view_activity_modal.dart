@@ -155,7 +155,7 @@ class _Image extends StatelessWidget {
                         },
                         child: Image.network(
                           path,
-                          fit: BoxFit.fitWidth,
+                          fit: BoxFit.contain,
                         ),
                       ),
                     ));
@@ -165,7 +165,7 @@ class _Image extends StatelessWidget {
             width: 100,
             child: Image.network(
               path,
-              fit: BoxFit.fill,
+              fit: BoxFit.contain,
             ),
           ),
         ),

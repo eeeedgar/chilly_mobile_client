@@ -41,6 +41,11 @@ class ActivityCubit extends Cubit<ActivityState> {
     await fetchActivities();
   }
 
+  Future<void> deleteActivity(String activityId) async {
+    await getIt<ActivityRepository>().deleteActivity(activityId);
+    await fetchActivities();
+  }
+
   Future<void> editActivity(String id, UpdateActivityDto dto) async {
     await getIt<ActivityRepository>().updateActivity(id, dto);
     await fetchActivities();

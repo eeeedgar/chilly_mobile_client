@@ -19,17 +19,20 @@ class ActivityNetworkRepository extends ActivityRepository {
   }
 
   @override
-  Future<void> deleteActivity(String activityId) {
-    // TODO: implement deleteActivity
-    throw UnimplementedError();
+  Future<void> deleteActivity(String activityId) async {
+    print('[eeee] [delete] $activityId');
+    await dio.delete(
+      '/events/$activityId',
+    );
   }
 
   @override
   Future<List<ActivityMeta>> getActivities() async {
     final user = getIt<UserChangeNotifier>().user!;
     final searchSettings = getIt<SearchChangeNotifier>().settings;
+    print('[eeee] [userId] ${user.id}');
     print(searchSettings.toString());
-    return await dio.get('/events/all', queryParameters: {
+    final a = await dio.get('/events/all', queryParameters: {
       'userId': user.id,
       'onlyActive': searchSettings.onlyActive ? true : '',
       'inRange': searchSettings.inRange ? true : '',
@@ -41,6 +44,7 @@ class ActivityNetworkRepository extends ActivityRepository {
     }).then((value) => (value.data['events'] as List)
         .map((x) => ActivityMeta.fromJson(x))
         .toList());
+    return a;
   }
 
   @override
